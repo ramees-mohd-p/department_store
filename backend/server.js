@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 const frontendPath = path.join(__dirname, '../frontend');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+//const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-key-change-this';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 
@@ -595,10 +595,10 @@ app.get('*', (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
-  console.log(`🔑 Admin password: ${ADMIN_PASSWORD}`);
-  console.log(`📁 Frontend path: ${frontendPath}`);
-});
+//app.listen(PORT, () => {
+ // console.log(`✅ Server running on http://localhost:${PORT}`);
+  //console.log(`🔑 Admin password: ${ADMIN_PASSWORD}`);
+ // console.log(`📁 Frontend path: ${frontendPath}`);
+//});
 
 export default app;
