@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARWAN Petite Couture - Luxury Fashion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <div class="brand" id="brandName">BM</div>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search products...">
+                    <button id="searchBtn">🔍</button>
+                </div>
+                
+                <div class="user-icons">
+                    <button class="icon-btn" id="profileBtn" title="Profile">👤</button>
+                    <div class="cart-icon-wrapper">
+                        <button class="icon-btn" id="cartBtn" title="Cart">🛒</button>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <nav class="mobile-menu" id="mobileMenu">
+            <a href="#" class="menu-item" data-category="all">All Products</a>
+            <a href="#" class="menu-item" data-category="dress">Dresses</a>
+            <a href="#" class="menu-item" data-category="saree">Sarees</a>
+            <a href="#" class="menu-item" data-category="shirt">Shirts</a>
+            <a href="#" class="menu-item" data-category="blouse">Blouses</a>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- HERO SECTION
+        <section class="hero" id="hero">
+            <div class="hero-slides">
+                <div class="hero-slide" style="background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);">
+                    <div class="hero-content">
+                        <h1>Elegant Fashion</h1>
+                        <p>Discover our luxury collection</p>
+                    </div>
+                </div>
+                <div class="hero-slide" style="background: linear-gradient(135deg, #f472b6 0%, #fbcfe8 100%);">
+                    <div class="hero-content">
+                        <img src="p5.jpeg" alt="Petite Couture Collection" class="slide-image">
+                        <h1>Petite Couture</h1>
+                        <p>Perfectly tailored for you</p>
+                    </div>
+                </div>
+                <div class="hero-slide" style="background: linear-gradient(135deg, #fbcfe8 0%, #fce7f3 100%);">
+                    <div class="hero-content">
+                        <h1>New Collection</h1>
+                        <p>Premium quality fabrics</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-controls">
+                <button class="hero-prev">❮</button>
+                <div class="hero-dots" id="heroDots"></div>
+                <button class="hero-next">❯</button>
+            </div>
+        </section>-->
+
+        <section class="hero-slider">
+  <div class="slider-container" id="slider-container">
+    <div class="slide active">
+      <div class="slide-content">
+        <h2 class="slide-year">2026</h2>
+        <h1 class="slide-title">Petite Couture</h1>
+        <button class="cta-button" onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})">SHOP NOW</button>
+      </div>
+      <img src="P1.jpeg" alt="Petite Couture Collection" class="slide-image">
+     <!--<div class="slide-image" style="background: linear-gradient(135deg, #fce7f3 0%, #f8d5e8 100%);"></div>--> 
+    </div>
+
+    <div class="slide">
+      <div class="slide-content">
+        <h2 class="slide-year">Spring 2026</h2>
+        <h1 class="slide-title">Flowers & Dreams</h1>
+        <button class="cta-button" onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})">SHOP NOW</button>
+      </div>
+       <img src="p7.jpeg" alt="Petite Couture Collection" class="slide-image">
+      <!--<div class="slide-image" style="background: linear-gradient(135deg, #e8a8d0 0%, #f5d5e8 100%);"></div>--> 
+    </div>
+
+    <div class="slide">
+      <div class="slide-content">
+        <h2 class="slide-year">New Arrivals</h2>
+        <h1 class="slide-title">Elegant Grace</h1>
+        <button class="cta-button" onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})">SHOP NOW</button>
+      </div>
+      <img src="p3.jpeg" alt="Petite Couture Collection" class="slide-image">
+      <!--<div class="slide-image" style="background: linear-gradient(135deg, #d4a5d5 0%, #e8a8d0 100%);"></div>-->
+    </div>
+  </div>
+
+  <button class="slider-btn prev" id="slider-prev">❮</button>
+  <button class="slider-btn next" id="slider-next">❯</button>
+
+  <div class="slider-dots" id="slider-dots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
+</section>
+
+
+        <!-- FILTERS SECTION -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label>Category</label>
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="dress">Dress</option>
+                        <option value="saree">Saree</option>
+                        <option value="shirt">Shirt</option>
+                        <option value="blouse">Blouse</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Price Range</label>
+                    <input type="range" id="priceFilter" min="0" max="50000" step="100">
+                    <span id="priceValue">₹0 - ₹50000</span>
+                </div>
+
+                <div class="filter-group">
+                    <label>Color</label>
+                    <div class="color-swatches" id="colorFilter"></div>
+                </div>
+
+                <button class="btn-primary" id="applyFilters">Apply Filters</button>
+                <button class="btn-secondary" id="clearFilters">Clear All</button>
+            </div>
+        </section>
+
+        <!-- PRODUCTS GRID -->
+        <section class="products-section">
+            <h2>Our Collection</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+                <div class="loading">Loading products...</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div class="modal" id="productModal">
+        <div class="modal-content product-detail">
+            <button class="modal-close">✕</button>
+            
+            <div class="product-detail-container">
+                <!-- Product Images -->
+                <div class="product-images">
+                    <div class="main-image">
+                        <img id="mainImage" src="" alt="Product">
+                        <div class="zoom-hint">Click to zoom</div>
+                    </div>
+                    <div class="image-gallery">
+                        <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info">
+                    <h2 id="productName"></h2>
+                    <div class="product-rating">★★★★★ (0 reviews)</div>
+                    
+                    <div class="product-price">
+                        <span id="productPrice"></span>
+                    </div>
+
+                    <div class="product-description">
+                        <p id="productBlurb"></p>
+                        <div id="productDetails"></div>
+                    </div>
+
+                    <!-- Color Selection -->
+                    <div class="product-colors">
+                        <label>Color</label>
+                        <div class="color-options" id="colorOptions"></div>
+                    </div>
+
+                    <!-- Size Selection -->
+                    <div class="product-sizes">
+                        <label>Size</label>
+                        <div class="size-options" id="sizeOptions"></div>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="product-quantity">
+                        <label>Quantity</label>
+                        <div class="qty-selector">
+                            <button class="qty-btn" id="qtyMinus">−</button>
+                            <input type="number" id="productQty" value="1" min="1">
+                            <button class="qty-btn" id="qtyPlus">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="product-actions">
+                        <button class="btn-primary btn-large" id="addToCartBtn">Add to Cart</button>
+                        <button class="btn-secondary btn-large" id="addToWishlistBtn">♡ Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART DRAWER -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Shopping Cart</h2>
+                <button class="cart-close">✕</button>
+            </div>
+
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">Your cart is empty</div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">₹0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span id="shipping">₹0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax</span>
+                    <span id="tax">₹0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="total">₹0</span>
+                </div>
+            </div>
+
+            <div class="cart-actions">
+                <button class="btn-primary btn-large" id="checkoutBtn">Checkout</button>
+                <button class="btn-secondary btn-large" id="continueShopping">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- USER PROFILE MODAL -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <button class="modal-close">✕</button>
+            
+            <div class="profile-container">
+                <div class="profile-tabs">
+                    <button class="tab-btn active" data-tab="login">Login</button>
+                    <button class="tab-btn" data-tab="register">Register</button>
+                    <button class="tab-btn" data-tab="account" id="accountTab">My Account</button>
+                </div>
+
+                <!-- LOGIN TAB -->
+                <div class="tab-content active" id="loginTab">
+                    <h2>Login</h2>
+                    <form id="loginForm">
+                        <input type="email" id="loginEmail" placeholder="Email" required>
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                        <button type="submit" class="btn-primary">Login</button>
+                    </form>
+                </div>
+
+                <!-- REGISTER TAB -->
+                <div class="tab-content" id="registerTab">
+                    <h2>Create Account</h2>
+                    <form id="registerForm">
+                        <input type="text" id="registerName" placeholder="Full Name" required>
+                        <input type="email" id="registerEmail" placeholder="Email" required>
+                        <input type="password" id="registerPassword" placeholder="Password" required>
+                        <input type="password" id="registerConfirm" placeholder="Confirm Password" required>
+                        <button type="submit" class="btn-primary">Register</button>
+                    </form>
+                </div>
+
+                <!-- ACCOUNT TAB -->
+                <div class="tab-content" id="accountTab">
+                    <h2>My Account</h2>
+                    <div id="accountContent"></div>
+                    <button class="btn-secondary" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content checkout-content">
+            <button class="modal-close">✕</button>
+            
+            <div class="checkout-container">
+                <h2>Checkout</h2>
+                
+                <div class="checkout-steps">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span>Shipping</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span>Payment</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span>Confirmation</span>
+                    </div>
+                </div>
+
+                <!-- STEP 1: SHIPPING -->
+                <div class="checkout-step active" id="step1">
+                    <h3>Shipping Address</h3>
+                    <form id="shippingForm">
+                        <input type="text" id="customerName" placeholder="Full Name" required>
+                        <input type="email" id="customerEmail" placeholder="Email" required>
+                        <input type="tel" id="customerPhone" placeholder="Phone Number" required>
+                        <input type="text" id="address" placeholder="Address" required>
+                        <input type="text" id="city" placeholder="City" required>
+                        <input type="text" id="state" placeholder="State" required>
+                        <input type="text" id="zip" placeholder="ZIP Code" required>
+                        
+                        <div class="shipping-method">
+                            <label>Shipping Method</label>
+                            <label class="radio">
+                                <input type="radio" name="shipping" value="standard" checked>
+                                Standard (5-7 days) - ₹100
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="shipping" value="express">
+                                Express (2-3 days) - ₹500
+                            </label>
+                        </div>
+
+                        <button type="button" class="btn-primary" id="nextPaymentBtn">Continue to Payment</button>
+                    </form>
+                </div>
+
+                <!-- STEP 2: PAYMENT -->
+                <div class="checkout-step" id="step2">
+                    <h3>Payment Method</h3>
+                    <form id="paymentForm">
+                        <div class="payment-methods">
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="razorpay" checked>
+                                <span>Credit/Debit Card (Razorpay)</span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="cod">
+                                <span>Cash on Delivery (COD)</span>
+                            </label>
+                        </div>
+
+                        <div id="razorpayOptions" class="payment-details">
+                            <p>You will be redirected to Razorpay to complete payment</p>
+                        </div>
+
+                        <div id="codOptions" class="payment-details" style="display:none;">
+                            <p>Pay when you receive your order</p>
+                        </div>
+
+                        <button type="button" class="btn-primary" id="placeOrderBtn">Place Order</button>
+                    </form>
+                </div>
+
+                <!-- STEP 3: CONFIRMATION -->
+                <div class="checkout-step" id="step3">
+                    <div class="order-confirmation">
+                        <h3>✓ Order Confirmed!</h3>
+                        <div id="confirmationDetails"></div>
+                        <button class="btn-primary" id="backToShopBtn">Back to Shop</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMAGE ZOOM MODAL -->
+    <div class="modal" id="zoomModal">
+        <div class="zoom-content">
+            <button class="modal-close">✕</button>
+            <img id="zoomImage" src="" alt="Zoomed product">
+            <div class="zoom-controls">
+                <button id="zoomIn">🔍+</button>
+                <button id="zoomOut">🔍−</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- SCRIPTS -->
+    <script src="app.js"></script>
+    <script>
+
+     // Auto-slide hero
+  setInterval(() => {
+    nextSlide();
+  }, 5000);
+
+  function nextSlide() {
+    state.currentSlide = (state.currentSlide + 1) % 3;
+    updateSlider();
+  }
+
+  function prevSlide() {
+    state.currentSlide = (state.currentSlide - 1 + 3) % 3;
+    updateSlider();
+  }
+
+  function goToSlide(n) {
+    state.currentSlide = n;
+    updateSlider();
+  }
+
+  function updateSlider() {
+    document.querySelectorAll('.slide').forEach((slide, i) => {
+      slide.classList.toggle('active', i === state.currentSlide);
+    });
+    document.querySelectorAll('.dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === state.currentSlide);
+    });
+  }
+
+  document.getElementById('slider-next').addEventListener('click', nextSlide);
+  document.getElementById('slider-prev').addEventListener('click', prevSlide);
+</script>
+</body>
+</html>

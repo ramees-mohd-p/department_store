@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARWAN Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>MARWAN</h1>
+                <p>Admin Panel</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="#" class="nav-item" data-section="products">
+                    <span>👗</span> Products
+                </a>
+                <a href="#" class="nav-item" data-section="add-product">
+                    <span>➕</span> Add Product
+                </a>
+                <a href="#" class="nav-item" data-section="orders">
+                    <span>📦</span> Orders
+                </a>
+                <a href="#" class="nav-item" data-section="colors">
+                    <span>🎨</span> Manage Colors
+                </a>
+                <a href="#" class="nav-item" data-section="logout">
+                    <span>🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="header">
+                <h2 id="page-title">Dashboard</h2>
+                <div class="header-right">
+                    <span id="admin-info">Admin</span>
+                    <button id="logout-btn" class="btn-danger">Logout</button>
+                </div>
+            </header>
+
+            <!-- CONTENT SECTIONS -->
+            <div class="content">
+                
+                <!-- DASHBOARD -->
+                <section id="dashboard" class="section active">
+                    <div class="cards-grid">
+                        <div class="card">
+                            <h3>Total Products</h3>
+                            <p class="big-number" id="total-products">0</p>
+                        </div>
+                        <div class="card">
+                            <h3>Total Orders</h3>
+                            <p class="big-number" id="total-orders">0</p>
+                        </div>
+                        <div class="card">
+                            <h3>Pending Orders</h3>
+                            <p class="big-number" id="pending-orders">0</p>
+                        </div>
+                        <div class="card">
+                            <h3>Revenue</h3>
+                            <p class="big-number">₹<span id="total-revenue">0</span></p>
+                        </div>
+                    </div>
+
+                    <div class="recent-orders">
+                        <h3>Recent Orders</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-orders-body">
+                                <!-- Orders will load here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- PRODUCTS LIST -->
+                <section id="products" class="section">
+                    <div class="section-header">
+                        <h3>All Products</h3>
+                        <input type="text" id="search-products" placeholder="Search products...">
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Article</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Colors</th>
+                                <th>Photos</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-body">
+                            <!-- Products will load here -->
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- ADD NEW PRODUCT -->
+                <section id="add-product" class="section">
+                    <h3>Add New Product</h3>
+                    <form id="add-product-form" class="form-grid">
+                        <div class="form-group">
+                            <label>Product Article/SKU *</label>
+                            <input type="text" id="article" placeholder="DRESS001" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Product Name *</label>
+                            <input type="text" id="product-name" placeholder="Evening Dress" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Category *</label>
+                            <select id="category" required>
+                                <option value="">Select category</option>
+                                <option value="dress">Dress</option>
+                                <option value="saree">Saree</option>
+                                <option value="shirt">Shirt</option>
+                                <option value="blouse">Blouse</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Price (₹) *</label>
+                            <input type="number" id="price" placeholder="5999" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Product Description/Blurb *</label>
+                            <textarea id="blurb" placeholder="Elegant evening wear..." required></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Details (comma separated)</label>
+                            <textarea id="details" placeholder="100% silk, Hand-stitched, Premium quality"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Add Product</button>
+                    </form>
+
+                    <!-- Product Created Message -->
+                    <div id="product-success" class="success-message" style="display:none;">
+                        <p>✅ Product created! Now add colors and photos below:</p>
+                        <div id="product-created-info"></div>
+
+                        <!-- Add Colors -->
+                        <h4>Add Product Colors</h4>
+                        <div class="color-form">
+                            <input type="text" id="color-name" placeholder="Color name (e.g., Red)">
+                            <input type="color" id="color-code" value="#FF0000">
+                            <button type="button" class="btn-secondary" onclick="addColor()">Add Color</button>
+                        </div>
+                        <div id="colors-list"></div>
+
+                        <!-- Upload Photos -->
+                        <h4>Upload Product Photos</h4>
+                        <div class="photo-upload">
+                            <input type="file" id="photo-file" accept="image/*">
+                            <select id="color-select">
+                                <option value="">Select color (optional)</option>
+                            </select>
+                            <input type="number" id="display-order" placeholder="Display order" value="0">
+                            <button type="button" class="btn-secondary" onclick="uploadPhoto()">Upload Photo</button>
+                        </div>
+                        <div id="photos-list"></div>
+                    </div>
+                </section>
+
+                <!-- ORDERS MANAGEMENT -->
+                <section id="orders" class="section">
+                    <div class="section-header">
+                        <h3>All Orders</h3>
+                        <select id="order-status-filter">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                        </select>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Email</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                                <th>Payment</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-body">
+                            <!-- Orders will load here -->
+                        </tbody>
+                    </table>
+
+                    <!-- Order Details Modal -->
+                    <div id="order-modal" class="modal" style="display:none;">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeOrderModal()">&times;</span>
+                            <h3>Order Details</h3>
+                            <div id="order-details"></div>
+                            <div class="form-group">
+                                <label>Order Status</label>
+                                <select id="order-status-update">
+                                    <option value="pending">Pending</option>
+                                    <option value="confirmed">Confirmed</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="delivered">Delivered</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Payment Status</label>
+                                <select id="payment-status-update">
+                                    <option value="pending">Pending</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="failed">Failed</option>
+                                </select>
+                            </div>
+                            <button class="btn-primary" onclick="updateOrderStatus()">Update Order</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MANAGE COLORS -->
+                <section id="colors" class="section">
+                    <h3>Manage Colors</h3>
+                    <p>Colors are managed within products. Go to "Add Product" or edit existing products to manage colors.</p>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS -->
+    <div id="toast" class="toast"></div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

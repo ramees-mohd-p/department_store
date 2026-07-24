@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MARWAN - Petite Couture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles-old.css">
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER & NAVIGATION
+     ============================================================ -->
+<header class="header">
+  <div class="header-container">
+    <button class="menu-toggle" id="menu-toggle">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <h1 class="brand-name">MARWAN</h1>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="search-btn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </button>
+      <button class="icon-btn" id="cart-toggle" aria-label="Shopping cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="cart-count" id="cart-count" style="display: none;">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="#" onclick="filterByCategory('all')">Shop All</a></li>
+      <li><a href="#" onclick="filterByCategory('dress')">Dresses</a></li>
+      <li><a href="#" onclick="filterByCategory('gown')">Gowns</a></li>
+      <li><a href="#" onclick="filterByCategory('party')">Party Wear</a></li>
+      <li><a href="#" onclick="filterByCategory('accessories')">Accessories</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ============================================================
+     HERO SLIDER
+     ============================================================ -->
+<section class="hero-slider">
+  <div class="slider-container" id="slider-container">
+    <div class="slide active">
+      <div class="slide-content">
+        <h2 class="slide-year">2026</h2>
+        <h1 class="slide-title">Petite Couture</h1>
+        <button class="cta-button" onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})">SHOP NOW</button>
+      </div>
+      <img src="P1.jpeg" alt="Petite Couture Collection" class="slide-image">
+    </div>
+
+    <div class="slide">
+      <div class="slide-content">
+        <h2 class="slide-year">Spring 2026</h2>
+        <h1 class="slide-title">Flowers & Dreams</h1>
+        <button class="cta-button" onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})">SHOP NOW</button>
+      </div>
+      <img src="P2.jpeg" alt="Petite Couture Collection" class="slide-image">
+    </div>
+
+    <div class="slide">
+      <div class="slide-content">
+        <h2 class="slide-year">New Arrivals</h2>
+        <h1 class="slide-title">Elegant Grace</h1>
+        <button class="cta-button" onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})">SHOP NOW</button>
+      </div>
+      <img src="p3.jpeg" alt="Petite Couture Collection" class="slide-image">
+    </div>
+  </div>
+
+  <div class="slide">
+      <div class="slide-content">
+        <h2 class="slide-year">New Arrivals</h2>
+        <h1 class="slide-title">Elegant Grace</h1>
+        <button class="cta-button" onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})">SHOP NOW</button>
+      </div>
+      <img src="p5.jpeg" alt="Petite Couture Collection" class="slide-image">
+    </div>
+  </div>
+
+  <button class="slider-btn prev" id="slider-prev">❮</button>
+  <button class="slider-btn next" id="slider-next">❯</button>
+
+  <div class="slider-dots" id="slider-dots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+    <span class="dot" onclick="goToSlide(3)"></span>
+  </div>
+</section>
+
+<!-- ============================================================
+     CATEGORY FILTERS
+     ============================================================ -->
+<section class="filters-section">
+  <div class="container">
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
+      <button class="filter-btn" onclick="filterByCategory('dress')">Dresses</button>
+      <button class="filter-btn" onclick="filterByCategory('gown')">Gowns</button>
+      <button class="filter-btn" onclick="filterByCategory('party')">Party Wear</button>
+    </div>
+    <p class="product-count">
+      <span id="catalog-count">3 pieces</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SHOP SECTION
+     ============================================================ -->
+<section id="shop" class="shop-section">
+  <div class="container">
+    <div class="products-grid" id="product-grid">
+      <!-- Products will load here -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CART DRAWER
+     ============================================================ -->
+<div class="scrim" id="cart-scrim" onclick="closeCart()"></div>
+<div class="drawer cart-drawer" id="cart-drawer">
+  <div class="drawer-header">
+    <h2>Your Bag</h2>
+    <button class="close-btn" id="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="drawer-content">
+    <div id="cart-items" class="cart-items"></div>
+  </div>
+  <div class="drawer-footer">
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">$0.00</span>
+      </div>
+    </div>
+    <button class="checkout-btn" onclick="openCheckout()" id="checkout-btn">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     PRODUCT DETAIL MODAL
+     ============================================================ -->
+<div class="scrim" id="pdp-scrim" onclick="closePDP()"></div>
+<div class="modal pdp-modal" id="pdp-panel">
+  <button class="modal-close" id="pdp-close" onclick="closePDP()">✕</button>
+  <div class="pdp-container" id="pdp-content"></div>
+</div>
+
+<!-- ============================================================
+     CHECKOUT MODAL
+     ============================================================ -->
+<div class="scrim" id="checkout-scrim" onclick="closeCheckout()"></div>
+<div class="modal checkout-modal" id="checkout-panel">
+  <button class="modal-close" id="checkout-close" onclick="closeCheckout()">✕</button>
+  <div class="checkout-container" id="checkout-content"></div>
+</div>
+
+<!-- ============================================================
+     ADMIN MODAL
+     ============================================================ -->
+<div class="scrim" id="admin-scrim" onclick="closeAdmin()"></div>
+<div class="modal admin-modal" id="admin-modal">
+  <button class="modal-close" id="admin-modal-close" onclick="closeAdmin()">✕</button>
+  <div class="admin-container">
+    <div id="admin-login-form" class="admin-form">
+      <h2>Admin Login</h2>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="admin-password" placeholder="Enter admin password">
+      </div>
+      <div id="admin-error" class="error-message"></div>
+      <button class="btn-primary" id="admin-login-btn" onclick="handleAdminLogin(event)">Login</button>
+    </div>
+
+    <div id="admin-panel" style="display: none;">
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="products">Products</button>
+        <button class="admin-tab" data-tab="orders">Orders</button>
+      </div>
+
+      <div class="admin-tab-content" id="admin-products-tab"></div>
+      <div class="admin-tab-content" id="admin-orders-tab" style="display: none;"></div>
+
+      <button class="btn-secondary" id="admin-logout-btn" onclick="handleAdminLogout()" style="margin-top: 20px; width: 100%;">Logout</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PRODUCT FORM MODAL
+     ============================================================ -->
+<div class="scrim" id="product-form-scrim"></div>
+<div class="modal product-form-modal" id="product-form-modal">
+  <button class="modal-close" onclick="closeProductForm()">✕</button>
+  <div class="form-container" id="product-form-content"></div>
+</div>
+
+<!-- ============================================================
+     TOAST NOTIFICATION
+     ============================================================ -->
+<div class="toast" id="toast"></div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>MARWAN</h3>
+        <p>Luxury Petite Couture for Special Moments</p>
+      </div>
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Dresses</a></li>
+          <li><a href="#">Gowns</a></li>
+          <li><a href="#">Party Wear</a></li>
+          <li><a href="#">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Care</h4>
+        <ul>
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 MARWAN. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const API_BASE = window.location.origin;
+  let state = {
+    products: [],
+    cart: [],
+    authToken: localStorage.getItem('authToken') || null,
+    shipping: 'standard',
+    selectedSize: null,
+    currentSlide: 0
+  };
+
+  // Auto-slide hero
+  setInterval(() => {
+    nextSlide();
+  }, 5000);
+
+  function nextSlide() {
+    state.currentSlide = (state.currentSlide + 1) % 3;
+    updateSlider();
+  }
+
+  function prevSlide() {
+    state.currentSlide = (state.currentSlide - 3 + 1) % 3;
+    updateSlider();
+  }
+
+  function goToSlide(n) {
+    state.currentSlide = n;
+    updateSlider();
+  }
+
+  function updateSlider() {
+    document.querySelectorAll('.slide').forEach((slide, i) => {
+      slide.classList.toggle('active', i === state.currentSlide);
+    });
+    document.querySelectorAll('.dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === state.currentSlide);
+    });
+  }
+
+  document.getElementById('slider-next').addEventListener('click', nextSlide);
+  document.getElementById('slider-prev').addEventListener('click', prevSlide);
+
+  // Menu toggle
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  });
+
+  // Load all functions from app.js
+  async function loadProducts() {
+    try {
+      const res = await fetch(`${API_BASE}/api/products`);
+      const products = await res.json();
+      state.products = products;
+      renderShop();
+    } catch (e) {
+      showToast('Failed to load products: ' + e.message);
+    }
+  }
+
+  function renderShop() {
+    const catalogCount = document.getElementById('catalog-count');
+    if (state.products.length === 0) {
+      catalogCount.innerHTML = '<p style="color:#999;">No products available</p>';
+      document.getElementById('product-grid').innerHTML = '<p style="padding:40px;text-align:center;color:#999;">No products yet. Admin can add them!</p>';
+      return;
+    }
+
+    catalogCount.textContent = `${state.products.length} pieces`;
+
+    let html = '';
+    state.products.forEach(p => {
+      const photoHtml = p.photo_url 
+        ? `<img src="${p.photo_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" />`
+        : `<div style="width:100%;height:100%;background:linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);display:flex;align-items:center;justify-content:center;"><span style="color:#ec4899;font-size:48px;font-weight:300;">${p.name.charAt(0)}</span></div>`;
+      
+      html += `
+        <div class="product-card" onclick="openPDP('${p.id}')">
+          <div class="product-image">${photoHtml}</div>
+          <h3 class="product-name">${p.name}</h3>
+          <p class="product-category">${p.category}</p>
+          <p class="product-price">$${p.price}</p>
+        </div>
+      `;
+    });
+
+    document.getElementById('product-grid').innerHTML = html;
+  }
+
+  function openPDP(productId) {
+    const product = state.products.find(p => p.id === productId);
+    if (!product) return;
+
+    const photoHtml = product.photo_url
+      ? `<img src="${product.photo_url}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;" />`
+      : `<div style="width:100%;height:100%;background:linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);display:flex;align-items:center;justify-content:center;"><span style="color:#ec4899;font-size:100px;font-weight:300;">${product.name.charAt(0)}</span></div>`;
+
+    document.getElementById('pdp-content').innerHTML = `
+      <div class="pdp-grid">
+        <div class="pdp-image">${photoHtml}</div>
+        <div class="pdp-info">
+          <h1>${product.name}</h1>
+          <p class="pdp-category">${product.category}</p>
+          <p class="pdp-price">$${product.price}</p>
+          
+          <div class="pdp-section">
+            <h3>Description</h3>
+            <p>${product.blurb}</p>
+          </div>
+
+          <div class="pdp-section">
+            <h3>Details</h3>
+            <ul>
+              ${product.details.map(d => `<li>${d}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="pdp-section">
+            <h3>Size</h3>
+            <div class="size-options">
+              ${product.sizes.map(s => `
+                <button class="size-btn" data-size="${s}">${s}</button>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="pdp-section">
+            <h3>Color</h3>
+            <div class="color-options">
+              ${product.colors.map((c, i) => `
+                <button class="color-btn" data-color="${c.name}" title="${c.name}" style="background: ${c.swatch}; border: 2px solid ${c.line};"></button>
+              `).join('')}
+            </div>
+          </div>
+
+          <button class="btn-primary add-to-cart" data-product-id="${product.id}">Add to Bag</button>
+        </div>
+      </div>
+    `;
+
+    document.querySelectorAll('.size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.selectedSize = btn.getAttribute('data-size');
+      });
+    });
+
+    document.querySelector('.add-to-cart').addEventListener('click', (e) => {
+      if (!state.selectedSize) {
+        showToast('Please select a size');
+        return;
+      }
+      addToCart(product.id, state.selectedSize, 'Default');
+    });
+
+    document.getElementById('pdp-panel').classList.add('open');
+    document.getElementById('pdp-scrim').classList.add('visible');
+  }
+
+  function closePDP() {
+    document.getElementById('pdp-panel').classList.remove('open');
+    document.getElementById('pdp-scrim').classList.remove('visible');
+    state.selectedSize = null;
+  }
+
+  function addToCart(productId, size, color) {
+    const product = state.products.find(p => p.id === productId);
+    if (!product) return;
+
+    state.cart.push({
+      id: productId,
+      size: size,
+      color: color,
+      qty: 1
+    });
+
+    showToast(`${product.name} added to bag`);
+    renderCart();
+    closePDP();
+  }
+
+  function removeFromCart(index) {
+    state.cart.splice(index, 1);
+    renderCart();
+  }
+
+  function updateCartQty(index, qty) {
+    if (qty <= 0) {
+      removeFromCart(index);
+    } else {
+      state.cart[index].qty = parseInt(qty);
+      renderCart();
+    }
+  }
+
+  function cartSubtotal() {
+    return state.cart.reduce((sum, line) => {
+      const product = state.products.find(p => p.id === line.id);
+      return sum + (product ? product.price * line.qty : 0);
+    }, 0);
+  }
+
+  function renderCart() {
+    const cartCount = document.getElementById('cart-count');
+    const count = state.cart.reduce((sum, line) => sum + line.qty, 0);
+    cartCount.textContent = count;
+    cartCount.style.display = count > 0 ? 'flex' : 'none';
+
+    const cartItemsDiv = document.getElementById('cart-items');
+    const subtotal = cartSubtotal();
+
+    if (state.cart.length === 0) {
+      cartItemsDiv.innerHTML = '<p style="padding:40px;text-align:center;color:#999;">Your bag is empty</p>';
+      return;
+    }
+
+    let html = '';
+    state.cart.forEach((line, idx) => {
+      const product = state.products.find(p => p.id === line.id);
+      if (!product) return;
+
+      const photoHtml = product.photo_url
+        ? `<img src="${product.photo_url}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;" />`
+        : `<div style="background:linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="color:#ec4899;">${product.name.charAt(0)}</span></div>`;
+
+      html += `
+        <div class="cart-item">
+          <div class="cart-item-image">${photoHtml}</div>
+          <div class="cart-item-details">
+            <p class="cart-item-name">${product.name}</p>
+            <p class="cart-item-meta">Size ${line.size}</p>
+            <p class="cart-item-price">$${product.price}</p>
+          </div>
+          <div class="cart-item-qty">
+            <button onclick="updateCartQty(${idx}, ${line.qty - 1})">−</button>
+            <input type="number" value="${line.qty}" onchange="updateCartQty(${idx}, this.value)" min="1" />
+            <button onclick="updateCartQty(${idx}, ${line.qty + 1})">+</button>
+          </div>
+          <button onclick="removeFromCart(${idx})" class="remove-btn">✕</button>
+        </div>
+      `;
+    });
+
+    cartItemsDiv.innerHTML = html;
+    document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+  }
+
+  function openCart() {
+    document.getElementById('cart-drawer').classList.add('open');
+    document.getElementById('cart-scrim').classList.add('visible');
+  }
+
+  function closeCart() {
+    document.getElementById('cart-drawer').classList.remove('open');
+    document.getElementById('cart-scrim').classList.remove('visible');
+  }
+
+  function openCheckout() {
+    if (state.cart.length === 0) {
+      showToast('Your bag is empty');
+      return;
+    }
+    renderCheckout();
+    document.getElementById('checkout-panel').classList.add('open');
+    document.getElementById('checkout-scrim').classList.add('visible');
+  }
+
+  function closeCheckout() {
+    document.getElementById('checkout-panel').classList.remove('open');
+    document.getElementById('checkout-scrim').classList.remove('visible');
+  }
+
+  function renderCheckout() {
+    const subtotal = cartSubtotal();
+    const shippingCost = subtotal === 0 ? 0 : (state.shipping === 'express' ? 18 : 0);
+    const tax = subtotal * 0.0825;
+    const total = subtotal + shippingCost + tax;
+
+    document.getElementById('checkout-content').innerHTML = `
+      <h2>Checkout</h2>
+      <form id="checkout-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" name="firstName" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" name="lastName" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <input type="text" name="address" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" name="city" required />
+          </div>
+          <div class="form-group">
+            <label>State</label>
+            <input type="text" name="state" required />
+          </div>
+          <div class="form-group">
+            <label>ZIP</label>
+            <input type="text" name="zip" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Shipping</label>
+          <div style="display:flex;gap:10px;">
+            <label><input type="radio" name="shipping" value="standard" checked /> Standard (5-7 days) - Free</label>
+            <label><input type="radio" name="shipping" value="express" /> Express (2 days) - $18</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Payment</label>
+          <select name="payment-method">
+            <option value="cod">Cash on Delivery</option>
+            <option value="razorpay">Credit/Debit Card</option>
+          </select>
+        </div>
+
+        <div class="order-summary">
+          <div class="summary-row"><span>Subtotal</span><span>$${subtotal.toFixed(2)}</span></div>
+          <div class="summary-row"><span>Shipping</span><span>${shippingCost === 0 ? 'Free' : '$' + shippingCost.toFixed(2)}</span></div>
+          <div class="summary-row"><span>Tax</span><span>$${tax.toFixed(2)}</span></div>
+          <div class="summary-row total"><span>Total</span><span>$${total.toFixed(2)}</span></div>
+        </div>
+
+        <button type="submit" class="btn-primary full-width">Place Order</button>
+      </form>
+    `;
+
+    document.getElementById('checkout-form').addEventListener('submit', handleCheckoutSubmit);
+  }
+
+  async function handleCheckoutSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const v = (name) => form.elements[name].value;
+
+    const order = {
+      items: state.cart,
+      subtotal: cartSubtotal(),
+      shipping: state.shipping === 'express' ? 18 : 0,
+      tax: cartSubtotal() * 0.0825,
+      customer_email: v('email'),
+      customer_name: v('firstName') + ' ' + v('lastName'),
+      shipping_address: { 
+        address: v('address'),
+        city: v('city'),
+        state: v('state'),
+        zip: v('zip')
+      },
+      payment_method: v('payment-method')
+    };
+
+    order.total = order.subtotal + order.shipping + order.tax;
+
+    try {
+      const res = await fetch(`${API_BASE}/api/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(order)
+      });
+
+      const data = await res.json();
+      if (!data.orderId) throw new Error('Failed to create order');
+
+      showOrderConfirmation(data.orderId, order);
+    } catch (e) {
+      showToast('Order failed: ' + e.message);
+    }
+  }
+
+  function showOrderConfirmation(orderId, order) {
+    document.getElementById('checkout-content').innerHTML = `
+      <div class="confirmation-screen">
+        <div class="checkmark">✓</div>
+        <h2>Order Confirmed!</h2>
+        <p>Thank you for your order</p>
+        <div class="order-details">
+          <p><strong>Order ID:</strong> ${orderId}</p>
+          <p><strong>Total:</strong> $${order.total.toFixed(2)}</p>
+          <p><strong>Email:</strong> ${order.customer_email}</p>
+        </div>
+        <button class="btn-secondary" onclick="closeCheckout()">Continue Shopping</button>
+      </div>
+    `;
+
+    state.cart = [];
+    renderCart();
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('visible');
+    setTimeout(() => toast.classList.remove('visible'), 3000);
+  }
+
+  function filterByCategory(category) {
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    // Filter implementation can be added here
+  }
+
+  // Admin functions (simplified)
+  function handleAdminLogin(e) {
+    e.preventDefault();
+    const password = document.getElementById('admin-password').value;
+    if (password !== 'admin123') {
+      document.getElementById('admin-error').textContent = 'Invalid password';
+      return;
+    }
+    state.authToken = 'mock-token';
+    localStorage.setItem('authToken', state.authToken);
+    document.getElementById('admin-login-form').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+    loadAdminProducts();
+  }
+
+  function handleAdminLogout() {
+    state.authToken = null;
+    localStorage.removeItem('authToken');
+    document.getElementById('admin-login-form').style.display = 'block';
+    document.getElementById('admin-panel').style.display = 'none';
+    document.getElementById('admin-password').value = '';
+  }
+
+  function loadAdminProducts() {
+    let html = '<button class="btn-primary" onclick="openProductForm(null)">+ Add Product</button>';
+    state.products.forEach(p => {
+      html += `
+        <div style="padding:12px;border:1px solid #e5d5d0;margin:12px 0;border-radius:4px;">
+          <p style="margin:0;font-weight:600;">${p.name}</p>
+          <p style="margin:4px 0 0;color:#999;font-size:12px;">$${p.price} · ${p.category}</p>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <button class="btn-secondary" onclick="openProductForm('${p.id}')">Edit</button>
+            <button class="btn-secondary" onclick="deleteProduct('${p.id}')">Delete</button>
+          </div>
+        </div>
+      `;
+    });
+    document.getElementById('admin-products-tab').innerHTML = html;
+  }
+
+  function openProductForm(productId) {
+    document.getElementById('product-form-modal').classList.add('open');
+    document.getElementById('product-form-scrim').classList.add('visible');
+    // Form implementation
+  }
+
+  function closeProductForm() {
+    document.getElementById('product-form-modal').classList.remove('open');
+    document.getElementById('product-form-scrim').classList.remove('visible');
+  }
+
+  function deleteProduct(productId) {
+    if (confirm('Delete this product?')) {
+      showToast('Product deleted');
+      loadProducts();
+    }
+  }
+
+  function openAdmin() {
+    document.getElementById('admin-modal').classList.add('open');
+    document.getElementById('admin-scrim').classList.add('visible');
+  }
+
+  function closeAdmin() {
+    document.getElementById('admin-modal').classList.remove('open');
+    document.getElementById('admin-scrim').classList.remove('visible');
+  }
+
+  // Initialize
+  document.getElementById('cart-toggle').addEventListener('click', openCart);
+  loadProducts();
+</script>
+
+</body>
+</html>
